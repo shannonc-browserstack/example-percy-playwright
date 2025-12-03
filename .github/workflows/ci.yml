@@ -36,4 +36,4 @@ jobs:
       
     # Run the build command (if your project has one)
     - name: Run Percy Visual Tests
-      run: npm run test web # Use 'npm run build' or similar command
+      run: npm run test-web # Use 'npm run build' or similar command
