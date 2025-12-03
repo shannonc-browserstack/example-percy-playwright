@@ -1,0 +1,43 @@
+# 1. Workflow Name
+name: CI Build and Test
+
+# 2. Trigger Events
+on:
+  push:
+    branches: [ "main" ] # Run when code is pushed to the main branch
+  pull_request:
+    branches: [ "main" ] # Run when a pull request is opened/updated against main
+
+# 3. Jobs to Execute
+jobs:
+  build_and_test:
+    # 4. Runner (Virtual Machine) Environment
+    runs-on: ubuntu-latest
+
+    env:
+      PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+    
+    # 5. Steps (Sequential Tasks)
+    steps:
+    
+    # Check out the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    # Setup the language environment (e.g., Node.js, Python, Java)
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # Use your project's version
+        
+    # Install dependencies
+    - name: Install dependencies
+      run: npm install
+      
+    # Run the build command (if your project has one)
+    - name: Run Percy Visual Tests
+      run: npm run test web # Use 'npm run build' or similar command
+
+    # Run tests
+    - name: Run tests
+      run: npm test # Use 'npm test' or similar command (e.g., 'pytest', 'mvn test')
