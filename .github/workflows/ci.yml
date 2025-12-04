@@ -2,11 +2,7 @@
 name: CI Build and Test
 
 # 2. Trigger Events
-on:
-  push:
-    branches: [ "main" ] # Run when code is pushed to the main branch
-  pull_request:
-    branches: [ "main" ] # Run when a pull request is opened/updated against main
+on: [push, pull_request]
 
 # 3. Jobs to Execute
 jobs:
